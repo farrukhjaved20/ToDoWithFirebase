@@ -3,7 +3,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firestore_app/Utils/controller.dart';
-import 'package:firestore_app/authentication/login_view.dart';
 import 'package:firestore_app/services/firebase.dart';
 import 'package:flutter/material.dart';
 

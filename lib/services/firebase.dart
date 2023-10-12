@@ -11,7 +11,7 @@ bool isUpdate = false;
 class MyMethods {
   final user = FirebaseAuth.instance.currentUser;
   adduser() async {
-    await FirebaseFirestore.instance.collection('users').add({
+    await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
       'name': Mycontrollers.namecontroller.text,
       'website': Mycontrollers.websitecontroller.text,
     });
