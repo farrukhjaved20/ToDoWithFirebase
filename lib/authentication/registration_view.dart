@@ -25,19 +25,29 @@ class _RegistrationState extends State<Registration> {
         email: controllers.emailcontroller.text.toString(),
         password: controllers.passwordcontroller.text.toString(),
       );
-
-      users.doc(credential.user!.uid).set({
-        'id': credential.user!.uid,
-        'Date': DateTime.now(),
+      users.add({
         'email': controllers.emailcontroller.text.toString(),
         'name': controllers.namecontroller.text.toString(),
         'website': controllers.websitecontroller.text.toString(),
         'phone Number': controllers.phonenumbercontroller.text.toString(),
-      }).then((value) => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Welcome To Home Screen'),
-            ),
-          ));
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Welcome To Home Screen'),
+        ),
+      );
+      // users.doc(credential.user!.uid).set({
+      //   'id': credential.user!.uid,
+      //   'Date': DateTime.now(),
+      //   'email': controllers.emailcontroller.text.toString(),
+      //   'name': controllers.namecontroller.text.toString(),
+      //   'website': controllers.websitecontroller.text.toString(),
+      //   'phone Number': controllers.phonenumbercontroller.text.toString(),
+      // }).then((value) => ScaffoldMessenger.of(context).showSnackBar(
+      //       const SnackBar(
+      //         content: Text('Welcome To Home Screen'),
+      //       ),
+      //     ));
       // ignore: use_build_context_synchronously
       Navigator.push(
           context,

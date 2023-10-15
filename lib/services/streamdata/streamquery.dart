@@ -50,11 +50,10 @@ class _StreamQueryState extends State<StreamQuery> {
                       onPressed: () {
                         setState(() {
                           isUpdate = true;
-                          Mycontrollers.namecontroller.text = data['name'];
-                          Mycontrollers.websitecontroller.text =
-                              data['website'];
+                          titleid = data.id;
                         });
-                       
+                        Mycontrollers.namecontroller.text = data['name'];
+                        Mycontrollers.websitecontroller.text = data['website'];
                         methods.bottomsheet(context);
                       },
                       icon: const Icon(Icons.edit)),
@@ -69,7 +68,6 @@ class _StreamQueryState extends State<StreamQuery> {
                           duration: Duration(seconds: 10),
                           content: Text('User Deleted Using Stream Query'),
                         ));
-                       
                       },
                       icon: const Icon(Icons.delete))
                 ]),

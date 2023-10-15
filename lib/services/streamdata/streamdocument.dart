@@ -55,10 +55,9 @@ class _StreamDocumentState extends State<StreamDocument> {
                   onPressed: () {
                     setState(() {
                       isUpdate = true;
-                      Mycontrollers.namecontroller.text = data['name'];
-                      Mycontrollers.websitecontroller.text = data['website'];
                     });
-
+                    Mycontrollers.namecontroller.text = data['name'];
+                    Mycontrollers.websitecontroller.text = data['website'];
                     methods.bottomsheet(context);
                   },
                   icon: const Icon(Icons.edit)),

@@ -15,6 +15,7 @@ class FutureDocument extends StatefulWidget {
 class _FutureDocumentState extends State<FutureDocument> {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   final user = FirebaseAuth.instance.currentUser;
+
   MyMethods methods = MyMethods();
   @override
   Widget build(BuildContext context) {
@@ -54,10 +55,9 @@ class _FutureDocumentState extends State<FutureDocument> {
                   onPressed: () {
                     setState(() {
                       isUpdate = true;
-                      Mycontrollers.namecontroller.text = data['name'];
-                      Mycontrollers.websitecontroller.text = data['website'];
                     });
-                   
+                    Mycontrollers.namecontroller.text = data['name'];
+                    Mycontrollers.websitecontroller.text = data['website'];
                     methods.bottomsheet(context);
                   },
                   icon: const Icon(Icons.edit)),

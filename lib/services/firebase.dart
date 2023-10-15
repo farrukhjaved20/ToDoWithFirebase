@@ -7,11 +7,12 @@ import 'package:firestore_app/Utils/roundbutton.dart';
 import 'package:flutter/material.dart';
 
 bool isUpdate = false;
+String titleid = '';
 
 class MyMethods {
   final user = FirebaseAuth.instance.currentUser;
   adduser() async {
-    await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
+    await FirebaseFirestore.instance.collection('users').add({
       'name': Mycontrollers.namecontroller.text,
       'website': Mycontrollers.websitecontroller.text,
     });
@@ -20,19 +21,8 @@ class MyMethods {
     Mycontrollers.websitecontroller.clear();
   }
 
-  updateuUserUnique({String? id}) async {
-    await FirebaseFirestore.instance.collection('users').doc(id).update({
-      'name': Mycontrollers.namecontroller.text,
-      'website': Mycontrollers.websitecontroller.text,
-    });
-
-    Mycontrollers.namecontroller.clear();
-    Mycontrollers.websitecontroller.clear();
-  }
-
-  // String titleid = '';
-  // updateuser() async {
-  //   await FirebaseFirestore.instance.collection('users').doc(titleid).update({
+  // updateuUserUnique({String? id}) async {
+  //   await FirebaseFirestore.instance.collection('users').doc(id).update({
   //     'name': Mycontrollers.namecontroller.text,
   //     'website': Mycontrollers.websitecontroller.text,
   //   });
@@ -40,6 +30,16 @@ class MyMethods {
   //   Mycontrollers.namecontroller.clear();
   //   Mycontrollers.websitecontroller.clear();
   // }
+
+  updateuser() async {
+    await FirebaseFirestore.instance.collection('users').doc(titleid).update({
+      'name': Mycontrollers.namecontroller.text,
+      'website': Mycontrollers.websitecontroller.text,
+    });
+
+    Mycontrollers.namecontroller.clear();
+    Mycontrollers.websitecontroller.clear();
+  }
 
   bottomsheet(
     context,
@@ -59,6 +59,7 @@ class MyMethods {
                 TextField(
                   controller: Mycontrollers.namecontroller,
                   decoration: const InputDecoration(
+                      hintText: 'Enter Your Name',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20)))),
                 ),
@@ -68,6 +69,7 @@ class MyMethods {
                 TextField(
                   controller: Mycontrollers.websitecontroller,
                   decoration: const InputDecoration(
+                      hintText: 'Enter Website Name',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20)))),
                 ),
@@ -83,7 +85,7 @@ class MyMethods {
                         text: isUpdate ? 'Update' : 'Add',
                         onTap: () async {
                           if (isUpdate) {
-                            await updateuUserUnique(id: user!.uid);
+                            await updateuser();
 
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
@@ -112,6 +114,8 @@ class MyMethods {
                       child: RoundButton(
                         text: 'Cancel',
                         onTap: () {
+                          Mycontrollers.namecontroller.clear();
+                          Mycontrollers.websitecontroller.clear();
                           Navigator.pop(context);
                         },
                       ),

@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ..forward().then((value) {
                   if (user != null) {
                     Timer(const Duration(milliseconds: 1), () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const Home(),
@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen>
                     });
                   } else if (user == null) {
                     Timer(const Duration(milliseconds: 1), () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const LoginPage(),

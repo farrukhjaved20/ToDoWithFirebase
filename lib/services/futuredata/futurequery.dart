@@ -56,6 +56,7 @@ class _FutureQueryState extends State<FutureQuery> {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
                 DocumentSnapshot data = snapshot.data!.docs[index];
+
                 return ListTile(
                   title: Text(data['name']),
                   subtitle: Text(data['website']),
@@ -64,11 +65,12 @@ class _FutureQueryState extends State<FutureQuery> {
                         onPressed: () {
                           setState(() {
                             isUpdate = true;
-                            Mycontrollers.namecontroller.text = data['name'];
-                            Mycontrollers.websitecontroller.text =
-                                data['website'];
+                            titleid = data.id;
                           });
 
+                          Mycontrollers.namecontroller.text = data['name'];
+                          Mycontrollers.websitecontroller.text =
+                              data['website'];
                           methods.bottomsheet(context);
                         },
                         icon: const Icon(Icons.edit)),
